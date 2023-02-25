@@ -18,13 +18,13 @@ for i in range(len(args)):
 	if args[i] == "-h":
                print("use ./xkcdpwgen with some flags")
 	elif args[i] == "-w":
-		word = args[i + 1]
+		words = int(args[i + 1])
 	elif args[i] == "-c":
-		caps = args[i + 1]
+		caps = int(args[i + 1])
 	elif args[i] == "-n":
-		num = args[i + 1]
+		num = int(args[i + 1])
 	elif args[i] == "-s":
-		symbol = args[i + 1]
+		symbol = int(args[i + 1])
 
 for i in range(words):
 	word = dict[random.randint(0, dictLen -1)]
@@ -33,30 +33,34 @@ for i in range(words):
 		word = word.capitalize()
 		caps -= 1
 	if num != 0:
-		rand_place = rand.randint(0,2)
-		rand_num = rand.randint(0,9)
+		rand_place = random.randint(0,2)
+		rand_num = random.randint(0,9)
 		
 		if rand_place == 0:
-			word += rand_num + word
+			word += str(rand_num) + word
 		elif rand_place == 1:
-			put = rand.randint(0, len(word - 1))
-			word = word[:put] + rand_num + word[put:]
+			put = random.randint(0, len(word) - 1)
+			word = word[:put] + str(rand_num) + word[put:]
 		else:
-			word += rand_num
+			word += str(rand_num)
 		num -= 1
 	if symbol != 0:
-		rand_place = rand.randint(0,2)
+		rand_place = random.randint(0,2)
 		symbols = "(~!@#$%^&*.:;)"
-        rand_sum = symbols[rand.randint(0, (len(symbols) - 1))]
-
-        if rand_place == 0:
-            word += rand_sym + word
-        elif rand_place == 1:
-            put = rand.randint(0, (len(word) - 1))
-            word = word[:put] + rand_sym + word[put:]
-        else:
-            word += rand_num
-            symbol -= 1
+        	
+		rand_sym = symbols[random.randint(0, len(symbols) - 1)]
+		
+		if rand_place == 0:
+            		word += rand_sym + word
+        	
+		elif rand_place == 1:
+            	
+			put = random.randint(0, (len(word) - 1))
+			word = word[:put] + rand_sym + word[put:]
+		else:
+			word += rand_sym
+			symbol -= 1
 	password += word
 
+password = ''.join(password.splitlines())
 print(password)
