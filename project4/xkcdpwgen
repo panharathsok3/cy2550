@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+import sys, random
+
+args = sys.argv[1:]
+dict = []
+password = ""
+words = 4
+caps = 0
+num = 0
+symbol = 0
+
+with open("words.txt") as file:
+	for item in file:
+		dict.append(item)
+dictLen = len(dict)
+
+for i in range(len(args)):
+	if args[i] == "-h":
+               print("use ./xkcdpwgen with some flags")
+	elif args[i] == "-w":
+		word = args[i + 1]
+	elif args[i] == "-c":
+		caps = args[i + 1]
+	elif args[i] == "-n":
+		num = args[i + 1]
+	elif args[i] == "-s":
+		symbol = args[i + 1]
+
+for i in range(words):
+	word = dict[random.randint(0, dictLen -1)]
+
+	if caps != 0:
+		word = word.capitalize()
+		caps -= 1
+	if num != 0:
+		rand_place = rand.randint(0,2)
+		rand_num = rand.randint(0,9)
+		
+		if rand_place == 0:
+			word += rand_num + word
+		elif rand_place == 1:
+			put = rand.randint(0, len(word - 1))
+			word = word[:put] + rand_num + word[put:]
+		else:
+			word += rand_num
+		num -= 1
+	if symbol != 0:
+		rand_place = rand.randint(0,2)
+		symbols = "(~!@#$%^&*.:;)"
+        rand_sum = symbols[rand.randint(0, (len(symbols) - 1))]
+
+        if rand_place == 0:
+            word += rand_sym + word
+        elif rand_place == 1:
+            put = rand.randint(0, (len(word) - 1))
+            word = word[:put] + rand_sym + word[put:]
+        else:
+            word += rand_num
+            symbol -= 1
+	password += word
+
+print(password)
