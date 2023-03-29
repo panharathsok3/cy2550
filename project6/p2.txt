@@ -1,0 +1,2 @@
+homedir: /home/sokp/.project2
+2023/03/29 17:54:06 starting server at localhost:8080
