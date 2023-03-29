@@ -1,1 +1,1 @@
-homedir: /home/sokp/.project2
+Congrats! Your server started, but your system allowed 2 files to be accessed that were not needed. sokp 2023-03-29 19:18:11.375274221 -0400 EDT m=+29.107926956 6FxEBYczL4xDWHiKVc+qZzSDsear6JH1IXCn1lbGiQ0=
